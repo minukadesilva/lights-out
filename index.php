@@ -1,18 +1,20 @@
 <?php
+
 declare(strict_types=1);
+
+require_once 'config/config.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Lights Out</title>
+    <title><?= htmlspecialchars($env['APP_NAME']) ?></title>
 
     <link rel="stylesheet"
           href="assets/css/style.css">
@@ -21,7 +23,7 @@ declare(strict_types=1);
 
 <body>
 
-    <h1>🏎️ Lights Out</h1>
+    <h1><?= htmlspecialchars($env['APP_NAME']) ?></h1>
 
     <script src="assets/js/script.js"></script>
 
