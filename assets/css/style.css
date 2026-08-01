@@ -166,3 +166,123 @@ body{
     border-top:1px solid #333;
 
 }
+
+/* ==========================
+   AUTH PAGES
+========================== */
+
+.auth-page{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:85vh;
+
+    padding:40px 20px;
+
+}
+
+.auth-card{
+
+    width:100%;
+
+    max-width:450px;
+
+    background:var(--surface);
+
+    padding:40px;
+
+    border-radius:12px;
+
+    border:1px solid #2d2d2d;
+
+}
+
+.auth-card h1{
+
+    text-align:center;
+
+    margin-bottom:10px;
+
+}
+
+.auth-subtitle{
+
+    text-align:center;
+
+    color:var(--text-light);
+
+    margin-bottom:30px;
+
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:20px;
+
+}
+
+.form-group label{
+
+    margin-bottom:8px;
+
+}
+
+.form-group input{
+
+    padding:14px;
+
+    border-radius:8px;
+
+    border:1px solid #444;
+
+    background:#121212;
+
+    color:white;
+
+    font-size:16px;
+
+}
+
+.form-group input:focus{
+
+    outline:none;
+
+    border-color:var(--primary);
+
+}
+
+.full-width{
+
+    width:100%;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+.auth-footer{
+
+    margin-top:25px;
+
+    text-align:center;
+
+}
+
+.auth-footer a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+}
