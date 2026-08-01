@@ -1,0 +1,28 @@
+CREATE DATABASE IF NOT EXISTS lights_out
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_general_ci;
+
+USE lights_out;
+
+CREATE TABLE user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL DEFAULT 'user'
+);
+
+CREATE TABLE blogPost (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_blog_user
+        FOREIGN KEY (user_id)
+        REFERENCES user(id)
+        ON DELETE CASCADE
+);
