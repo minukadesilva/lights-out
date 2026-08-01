@@ -5,20 +5,27 @@ require_once 'includes/header.php';
 require_once 'includes/navbar.php';
 ?>
 
-<main>
+<main class="hero">
 
-    <section class="hero">
+    <div class="container">
 
-        <h1>Lights Out</h1>
+        <h1>LIGHTS OUT</h1>
 
         <p>
-            Formula One News, Race Analysis & Opinions
+
+            Formula One News, Race Reports & Opinions
+
         </p>
 
-    </section>
+        <a href="auth/register.php" class="btn">
+
+            Get Started
+
+        </a>
+
+    </div>
 
 </main>
 
 <?php
 require_once 'includes/footer.php';
-?>

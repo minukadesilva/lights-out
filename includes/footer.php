@@ -1,16 +1,19 @@
-<footer>
+<footer class="footer">
 
-    <p>
+    <div class="container">
 
-        © <?= date("Y") ?>
+        <p>
 
-        Lights Out
+            © <?= date('Y') ?> Lights Out
 
-    </p>
+        </p>
+
+    </div>
 
 </footer>
 
 <script src="/lights-out/assets/js/script.js"></script>
 
 </body>
+
 </html>
