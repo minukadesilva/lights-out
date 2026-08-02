@@ -20,94 +20,164 @@ $query = "
 $result = $conn->query($query);
 ?>
 
-<main class="container">
+<main>
 
-    <h1 class="page-title">
+    <!-- Hero -->
 
-        Latest Formula One Articles
+    <section class="hero">
 
-    </h1>
+        <div class="hero-content">
 
-    <?php if ($result->num_rows === 0): ?>
+            <span class="hero-tag">
 
-        <div class="empty-state">
+                FORMULA ONE BLOG
 
-            <h2>No articles yet.</h2>
+            </span>
+
+            <h1>
+
+                LIGHTS OUT
+
+            </h1>
 
             <p>
 
-                Be the first to publish an F1 article!
+                Race reports, technical analysis, paddock stories,
+                and driver opinions from the world of Formula One.
 
             </p>
 
-        </div>
+            <a href="#latest" class="hero-btn">
 
-    <?php else: ?>
+                Explore Articles
 
-        <div class="blog-grid">
-
-            <?php while ($blog = $result->fetch_assoc()): ?>
-
-                <article class="blog-card">
-
-                    <h2>
-
-                        <?= htmlspecialchars($blog['title']) ?>
-
-                    </h2>
-
-                    <div class="meta">
-
-                        By
-
-                        <strong>
-
-                            <?= htmlspecialchars($blog['username']) ?>
-
-                        </strong>
-
-                        •
-
-                        <?= date(
-                            'd M Y',
-                            strtotime($blog['created_at'])
-                        ) ?>
-
-                    </div>
-
-                    <div class="excerpt">
-
-                        <?=
-                        substr(
-                            strip_tags(
-                                markdownToHtml(
-                                    $blog['content']
-                                )
-                            ),
-                            0,
-                            220
-                        );
-                        ?>
-
-                        ...
-
-                    </div>
-
-                    <a
-                        class="read-more"
-                        href="blog/view.php?id=<?= $blog['id'] ?>">
-
-                        Read More →
-
-                    </a>
-
-                </article>
-
-            <?php endwhile; ?>
+            </a>
 
         </div>
 
-    <?php endif; ?>
+    </section>
+
+    <?php
+    $featured = true;
+    ?>
+
+    <?php while ($blog = $result->fetch_assoc()): ?>
+
+        <?php if ($featured): ?>
+
+        <!-- Featured Article -->
+
+        <section class="featured">
+
+            <div class="featured-card">
+
+                <span class="featured-badge">
+
+                    FEATURED ARTICLE
+
+                </span>
+
+                <h2>
+
+                    <?= htmlspecialchars($blog['title']) ?>
+
+                </h2>
+
+                <p class="featured-meta">
+
+                    By
+                    <?= htmlspecialchars($blog['username']) ?>
+
+                    •
+
+                    <?= date('F d, Y', strtotime($blog['created_at'])) ?>
+
+                </p>
+
+                <p>
+
+                    <?= substr(strip_tags(markdownToHtml($blog['content'])),0,280) ?>
+
+                    ...
+
+                </p>
+
+                <a
+                    href="blog/view.php?id=<?= $blog['id'] ?>"
+                    class="hero-btn">
+
+                    Read Full Article →
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <section
+            id="latest"
+            class="latest-section">
+
+            <h2>
+
+                Latest Stories
+
+            </h2>
+
+            <div class="blog-grid">
+
+        <?php
+        $featured = false;
+        continue;
+        endif;
+        ?>
+
+            <article class="blog-card">
+
+                <span class="category">
+
+                    Formula One
+
+                </span>
+
+                <h3>
+
+                    <?= htmlspecialchars($blog['title']) ?>
+
+                </h3>
+
+                <p class="meta">
+
+                    <?= htmlspecialchars($blog['username']) ?>
+
+                    •
+
+                    <?= date('d M Y', strtotime($blog['created_at'])) ?>
+
+                </p>
+
+                <p>
+
+                    <?= substr(strip_tags(markdownToHtml($blog['content'])),0,140) ?>
+
+                    ...
+
+                </p>
+
+                <a
+                    href="blog/view.php?id=<?= $blog['id'] ?>">
+
+                    Read More →
+
+                </a>
+
+            </article>
+
+    <?php endwhile; ?>
+
+        </div>
+
+    </section>
 
 </main>
 

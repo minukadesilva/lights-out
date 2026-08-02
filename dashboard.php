@@ -10,28 +10,37 @@ if (!isset($_SESSION['user'])) {
 }
 ?>
 
-<main class="container">
+<main class="dashboard">
 
-    <h1>
+    <div class="dashboard-card">
 
-        Welcome,
-        <?= htmlspecialchars($_SESSION['user']['username']) ?>
+        <span class="dashboard-tag">
 
-    </h1>
+            Welcome Back
 
-    <p>
+        </span>
 
-        Ready to write another Formula One article?
+        <h1>
 
-    </p>
+            <?= htmlspecialchars($_SESSION['user']['username']) ?>
 
-    <br>
+        </h1>
 
-    <a href="blog/create.php" class="btn">
+        <p>
 
-        + New Article
+            Ready to publish your next Formula One story?
 
-    </a>
+        </p>
+
+        <a
+            href="/lights-out/blog/create.php"
+            class="hero-btn">
+
+            + Write New Article
+
+        </a>
+
+    </div>
 
 </main>
 

@@ -1,19 +1,22 @@
 <footer class="footer">
 
-    <div class="container">
+    <div class="footer-content">
+
+        <h3>🏎️ Lights Out</h3>
 
         <p>
 
-            © <?= date('Y') ?> Lights Out
+            Formula One Blog
 
         </p>
+
+        <small>
+
+            © 2026 Lights Out.
+            Created By Minuka De Silva.
+
+        </small>
 
     </div>
 
 </footer>
-
-<script src="/lights-out/assets/js/script.js"></script>
-
-</body>
-
-</html>
