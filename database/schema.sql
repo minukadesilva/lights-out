@@ -26,3 +26,6 @@ CREATE TABLE blogPost (
         REFERENCES user(id)
         ON DELETE CASCADE
 );
+
+ALTER TABLE blogPost
+ADD cover_image VARCHAR(255) DEFAULT 'default.jpg';

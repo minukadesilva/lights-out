@@ -2,9 +2,20 @@
 
     <div class="container">
 
-        <a href="/lights-out/index.php" class="logo">
-            🏎️ Lights Out
-        </a>
+<a href="/lights-out/index.php" class="logo">
+
+    <img
+        src="/lights-out/assets/images/logo.png"
+        alt="Lights Out Logo"
+        class="logo-image">
+
+    <span>
+
+        Lights Out
+
+    </span>
+
+</a>
 
         <ul class="nav-links">
 

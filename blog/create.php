@@ -21,7 +21,10 @@ if (!isset($_SESSION['user'])) {
             Share your Formula One thoughts with the community.
         </p>
 
-        <form action="../actions/create_blog.php" method="POST">
+        <form
+    action="../actions/create_blog.php"
+    method="POST"
+    enctype="multipart/form-data">
 
             <div class="form-group">
 
@@ -35,6 +38,22 @@ if (!isset($_SESSION['user'])) {
                     required>
 
             </div>
+
+            <div class="form-group">
+
+    <label for="cover_image">
+
+        Cover Image
+
+    </label>
+
+    <input
+        type="file"
+        id="cover_image"
+        name="cover_image"
+        accept="image/*">
+
+</div>
 
             <div class="toolbar">
 

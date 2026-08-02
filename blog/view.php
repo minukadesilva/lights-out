@@ -55,6 +55,10 @@ $stmt->close();
 <main class="article-container">
 
     <article class="article">
+        <img
+    src="/lights-out/uploads/<?= htmlspecialchars($blog['cover_image']) ?>"
+    alt="<?= htmlspecialchars($blog['title']) ?>"
+    class="article-image">
 
         <h1>
             <?= htmlspecialchars($blog['title']) ?>
