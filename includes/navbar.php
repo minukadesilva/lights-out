@@ -12,14 +12,24 @@
                 <a href="/lights-out/index.php">Home</a>
             </li>
 
-            <?php if (isset($_SESSION['user_id'])): ?>
+            <?php if (isset($_SESSION['user'])): ?>
+
+                <li>
+                    <a href="/lights-out/blog/create.php">New Article</a>
+                </li>
 
                 <li>
                     <a href="/lights-out/dashboard.php">Dashboard</a>
                 </li>
 
                 <li>
-                    <a href="/lights-out/actions/logout_action.php">Logout</a>
+                    <span class="nav-user">
+                        <?= htmlspecialchars($_SESSION['user']['username']) ?>
+                    </span>
+                </li>
+
+                <li>
+                    <a href="/lights-out/actions/logout.php">Logout</a>
                 </li>
 
             <?php else: ?>
