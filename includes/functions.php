@@ -7,9 +7,9 @@ function sanitizeInput(string $value): string
     return trim($value);
 }
 
-function redirect(string $location): void
+function redirect(string $path): void
 {
-    header("Location: $location");
+    header("Location: /lights-out/" . ltrim($path, '/'));
     exit;
 }
 
