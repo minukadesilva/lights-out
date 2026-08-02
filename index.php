@@ -174,19 +174,21 @@ $result = $conn->query($query);
 
     </p>
 
-    <p>
+<p class="excerpt">
 
-        <?= substr(strip_tags(markdownToHtml($blog['content'])),0,140) ?>
+    <?= substr(strip_tags(markdownToHtml($blog['content'])),0,140) ?>
 
-        ...
+    ...
 
-    </p>
+</p>
 
-    <a href="blog/view.php?id=<?= $blog['id'] ?>">
+<a
+    href="blog/view.php?id=<?= $blog['id'] ?>"
+    class="card-btn">
 
-        Read More →
+    Read Article →
 
-    </a>
+</a>
 
 </article>
 
