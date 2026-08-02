@@ -2,19 +2,23 @@
 
 declare(strict_types=1);
 
-/**
- * Remove unnecessary whitespace.
- */
 function sanitizeInput(string $value): string
 {
     return trim($value);
 }
 
-/**
- * Redirect to another page.
- */
 function redirect(string $location): void
 {
     header("Location: $location");
     exit;
+}
+
+function setError(string $message): void
+{
+    $_SESSION['error'] = $message;
+}
+
+function setSuccess(string $message): void
+{
+    $_SESSION['success'] = $message;
 }

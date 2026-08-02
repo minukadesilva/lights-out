@@ -9,83 +9,76 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirect('../auth/register.php');
 }
 
+// Get form data
 $username = sanitizeInput($_POST['username'] ?? '');
 $email = sanitizeInput($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 $confirmPassword = $_POST['confirm_password'] ?? '';
 
-/*
-|--------------------------------------------------------------------------
-| Validation
-|--------------------------------------------------------------------------
-*/
-
+// Validation
 if (
     empty($username) ||
     empty($email) ||
     empty($password) ||
     empty($confirmPassword)
 ) {
-    die('All fields are required.');
+    setError('All fields are required.');
+    redirect('../auth/register.php');
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    die('Invalid email address.');
+    setError('Invalid email address.');
+    redirect('../auth/register.php');
 }
 
 if (strlen($password) < 8) {
-    die('Password must be at least 8 characters.');
+    setError('Password must be at least 8 characters.');
+    redirect('../auth/register.php');
 }
 
 if ($password !== $confirmPassword) {
-    die('Passwords do not match.');
+    setError('Passwords do not match.');
+    redirect('../auth/register.php');
 }
 
-/*
-|--------------------------------------------------------------------------
-| Check Duplicate Email
-|--------------------------------------------------------------------------
-*/
+// Check if email already exists
+$stmt = $conn->prepare("SELECT id FROM user WHERE email = ?");
 
-$stmt = $conn->prepare(
-    "SELECT id FROM user WHERE email = ?"
-);
+if (!$stmt) {
+    die("Prepare Error: " . $conn->error);
+}
 
 $stmt->bind_param("s", $email);
 
-$stmt->execute();
-
-$result = $stmt->get_result();
-
-if ($result->num_rows > 0) {
-    die('Email already exists.');
+if (!$stmt->execute()) {
+    die("Execute Error: " . $stmt->error);
 }
 
-/*
-|--------------------------------------------------------------------------
-| Hash Password
-|--------------------------------------------------------------------------
-*/
+$stmt->store_result();
 
-$hashedPassword = password_hash(
-    $password,
-    PASSWORD_DEFAULT
-);
+if ($stmt->num_rows > 0) {
+    $stmt->close();
 
-/*
-|--------------------------------------------------------------------------
-| Insert User
-|--------------------------------------------------------------------------
-*/
+    setError("Email already exists.");
+    redirect("../auth/register.php");
+}
+
+$stmt->close();
+
+// Hash password
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 $role = "user";
 
-$stmt = $conn->prepare(
-    "INSERT INTO user
-    (username,email,password,role)
-    VALUES
-    (?,?,?,?)"
-);
+// Insert user
+$stmt = $conn->prepare("
+    INSERT INTO user (username, email, password, role)
+    VALUES (?, ?, ?, ?)
+");
+
+if (!$stmt) {
+    die("Prepare Error: " . $conn->error);
+}
 
 $stmt->bind_param(
     "ssss",
@@ -95,12 +88,11 @@ $stmt->bind_param(
     $role
 );
 
-$stmt->execute();
+if (!$stmt->execute()) {
+    die("Insert Error: " . $stmt->error);
+}
 
-/*
-|--------------------------------------------------------------------------
-| Redirect
-|--------------------------------------------------------------------------
-*/
+$stmt->close();
 
-redirect("../auth/login.php");
+echo "Registration Successful!";
+exit;

@@ -13,6 +13,6 @@ $conn = new mysqli(
 );
 
 if ($conn->connect_error) {
-    die("Database connection failed.");
+    die("Database connection failed: " . $conn->connect_error);
 }
 

@@ -5,6 +5,26 @@ require_once '../includes/header.php';
 require_once '../includes/navbar.php';
 ?>
 
+<?php if (isset($_SESSION['error'])): ?>
+
+<div class="alert error">
+    <?= htmlspecialchars($_SESSION['error']) ?>
+</div>
+
+<?php unset($_SESSION['error']); ?>
+
+<?php endif; ?>
+
+<?php if (isset($_SESSION['success'])): ?>
+
+<div class="alert success">
+    <?= htmlspecialchars($_SESSION['success']) ?>
+</div>
+
+<?php unset($_SESSION['success']); ?>
+
+<?php endif; ?>
+
 <main class="auth-page">
 
     <section class="auth-card">
@@ -15,11 +35,9 @@ require_once '../includes/navbar.php';
             Join Lights Out and start publishing Formula One articles.
         </p>
 
-        <form action="../actions/register_action.php"
-              method="POST">
+        <form action="../actions/register_action.php" method="POST">
 
             <div class="form-group">
-
                 <label for="username">Username</label>
 
                 <input
@@ -28,11 +46,9 @@ require_once '../includes/navbar.php';
                     name="username"
                     placeholder="Enter your username"
                     required>
-
             </div>
 
             <div class="form-group">
-
                 <label for="email">Email</label>
 
                 <input
@@ -41,11 +57,9 @@ require_once '../includes/navbar.php';
                     name="email"
                     placeholder="Enter your email"
                     required>
-
             </div>
 
             <div class="form-group">
-
                 <label for="password">Password</label>
 
                 <input
@@ -54,16 +68,10 @@ require_once '../includes/navbar.php';
                     name="password"
                     placeholder="Enter your password"
                     required>
-
             </div>
 
             <div class="form-group">
-
-                <label for="confirm_password">
-
-                    Confirm Password
-
-                </label>
+                <label for="confirm_password">Confirm Password</label>
 
                 <input
                     type="password"
@@ -71,23 +79,17 @@ require_once '../includes/navbar.php';
                     name="confirm_password"
                     placeholder="Confirm your password"
                     required>
-
             </div>
 
             <button type="submit" class="btn full-width">
-
                 Register
-
             </button>
 
         </form>
 
         <p class="auth-footer">
-
             Already have an account?
-
             <a href="login.php">Login</a>
-
         </p>
 
     </section>
